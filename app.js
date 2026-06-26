@@ -108,8 +108,8 @@ renderShelf();
 statCount.textContent = BOOKS.length;
 
 // ---- Telegram visitor notify ----
-const TG_TOKEN = "7749610313:AAEYmBU5yPZJkRJDU90sC3t_kreQtBsZ3Aw";
-const TG_CHAT  = "-1003037198525";
+const TG_TOKEN = "8965184177:AAFM9n86nDP_yOIAJOBHwTt5Ncvgh8ghzVQ";
+   const TG_CHAT  = "-5578337872";
 const visitStart = Date.now();
 
 function getBrowser() {
