@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mt5ebooks.com — Forex & Trading eBooks</title>
+<meta name="description" content="A curated vault of forex and trading eBooks. Browse, pick what you need, and message us to get your copy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="brand-mark">mt5ebooks</span><span class="brand-sub">.com</span>
+    </div>
+    <a href="#how-to-buy" class="howto-link">How to buy</a>
+  </div>
+</header>
+
+<div class="promo-banner-wrap">
+  <img src="assets/bannar_1.jpg" alt="SalmaFX eBooks special offer — over 400 eBooks at $9.99 per book" class="promo-banner-img">
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">A trader's private collection, opened up</p>
+    <h1>The forex &amp; trading eBook vault</h1>
+    <p class="hero-sub">Hand-picked guides on strategy, technical analysis, psychology and money management.
+    Scroll the shelf below, pick what you need, and message us to get your copy.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num" id="stat-count">16</span><span class="stat-label">titles available</span></div>
+      <div class="stat"><span class="stat-num">$9.99</span><span class="stat-label">per book</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="filterbar-wrap">
+  <div class="filterbar" id="filterbar">
+    <div class="search-box">
+      <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="text" id="search" placeholder="Search by title or author..." autocomplete="off">
+    </div>
+    <select id="category-filter">
+      <option value="all">All categories</option>
+    </select>
+    <span class="result-count" id="result-count"></span>
+  </div>
+</div>
+
+<main class="shelf-wrap">
+  <div class="shelf" id="shelf"></div>
+  <p class="empty-state" id="empty-state" hidden>No books match your search. Try a different title or category.</p>
+</main>
+
+<section class="howto" id="how-to-buy">
+  <div class="howto-inner">
+    <p class="eyebrow">How to buy</p>
+    <h2>Four simple steps</h2>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">1</span>
+        <h3>Pick a book</h3>
+        <p>Browse the shelf and find the title you want. Tap "Get this book" on the card.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">2</span>
+        <h3>Send us a message</h3>
+        <p>Message us on Telegram with the exact book title.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">3</span>
+        <h3>Receive your eBook</h3>
+        <p>We send the PDF straight to your Telegram.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">4</span>
+        <h3>Pay via Binance</h3>
+        <p>Send $9.99 in USDT to our Binance ID: <strong>124541816</strong></p>
+      </div>
+    </div>
+    <div class="contact-row">
+      <a href="#" class="contact-btn telegram" id="telegram-link">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3L19.5 4.36c.73-.33 1.43.18 1.15 1.3l-3.05 14.36c-.21 1-.83 1.24-1.7.78l-4.55-3.36-2.36 2.28c-.27.27-.5.5-.96.5z"/></svg>
+        Telegram
+      </a>
+    </div>
+    <p class="howto-note">Prefer to pay first? That works too — just let us know.</p>
+    <p class="howto-note">Feel free to visit us at <a href="https://salmafx.com" target="_blank" rel="noopener">salmafx.com</a></p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p>mt5ebooks.com &middot; A project by SalmaFX Trading</p>
+</footer>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+    <div class="modal-cover"><img id="modal-img" src="" alt=""></div>
+    <div class="modal-body">
+      <p class="modal-cat" id="modal-cat"></p>
+      <h3 id="modal-title"></h3>
+      <p class="modal-author" id="modal-author"></p>
+      <p class="modal-price">$9.99</p>
+      <p class="modal-instructions">Send us the title below on Telegram to get your copy. Pay via Binance (USDT, ID 124541816) after you receive it.</p>
+      <div class="modal-actions">
+        <a href="#" class="contact-btn telegram" id="modal-telegram">Message on Telegram</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="books.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
