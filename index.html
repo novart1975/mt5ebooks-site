@@ -92,6 +92,107 @@
   </div>
 </section>
 
+<!-- ============ CONTACT / START YOUR REQUEST SECTION ============ -->
+<section class="fme-contact" id="contact">
+  <style>
+    .fme-contact{padding:64px 24px;background:#f7f9fb;border-top:1px solid #e6e9ee}
+    .fme-contact-inner{max-width:1040px;margin:0 auto}
+    .fme-contact .fme-eyebrow{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#0b84ff;font-weight:700;margin:0 0 6px}
+    .fme-contact h2{font-family:'Fraunces',serif;font-size:34px;font-weight:700;color:#0f1b2d;margin:0 0 32px}
+    .fme-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+    @media(max-width:760px){.fme-grid{grid-template-columns:1fr}}
+    .fme-left{display:flex;flex-direction:column;gap:16px}
+    .fme-tg-btn{display:flex;align-items:center;gap:14px;border:1.5px solid #229ED9;border-radius:12px;padding:18px 20px;text-decoration:none;color:#0f1b2d;font-family:'Inter',sans-serif;font-weight:700;letter-spacing:.5px;font-size:15px;transition:background .15s}
+    .fme-tg-btn:hover{background:#eaf6fc}
+    .fme-tg-btn svg{width:26px;height:26px;fill:#229ED9;flex-shrink:0}
+    .fme-left-note{font-family:'Inter',sans-serif;font-size:13px;color:#667;line-height:1.6;margin:4px 2px 0}
+    .fme-right{display:flex;flex-direction:column;gap:12px}
+    .fme-right label{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#8a94a3;margin:0 0 2px;display:block}
+    .fme-right input,.fme-right textarea{width:100%;box-sizing:border-box;border:none;border-bottom:1.5px solid #d8dee6;background:transparent;padding:10px 2px;font-size:15px;font-family:'Inter',sans-serif;color:#0f1b2d;outline:none;transition:border-color .15s}
+    .fme-right input:focus,.fme-right textarea:focus{border-bottom-color:#0b84ff}
+    .fme-right textarea{resize:vertical;min-height:90px}
+    .fme-send{margin-top:8px;width:100%;background:#0b84ff;color:#fff;border:none;border-radius:8px;padding:15px;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;letter-spacing:1.5px;cursor:pointer;transition:background .15s}
+    .fme-send:hover{background:#0a6fd6}
+    .fme-send:disabled{opacity:.6;cursor:default}
+    .fme-ok{display:none;text-align:center;padding:20px 0;font-family:'Inter',sans-serif}
+    .fme-ok .tick{font-size:44px;color:#2e9e5b;line-height:1}
+    .fme-ok p{font-size:16px;font-weight:700;color:#0f1b2d;margin:10px 0 4px}
+    .fme-ok small{color:#667;font-size:13px}
+  </style>
+
+  <div class="fme-contact-inner">
+    <p class="fme-eyebrow">Get in touch</p>
+    <h2>Request your books</h2>
+
+    <div class="fme-grid">
+      <div class="fme-left">
+        <a class="fme-tg-btn" href="https://t.me/Abu0Salma" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3L19.5 4.36c.73-.33 1.43.18 1.15 1.3l-3.05 14.36c-.21 1-.83 1.24-1.7.78l-4.55-3.36-2.36 2.28c-.27.27-.5.5-.96.5z"/></svg>
+          Chat on Telegram
+        </a>
+        <p class="fme-left-note">Prefer chatting directly? Tap the button above to message us on Telegram, or use the form to send us your book request.</p>
+      </div>
+
+      <div class="fme-right" id="fme-form">
+        <div><label>Your name</label><input id="fme-name" type="text" placeholder="..."></div>
+        <div><label>Email</label><input id="fme-email" type="email" placeholder="you@email.com"></div>
+        <div><label>Message</label><textarea id="fme-msg" placeholder="Which books would you like? Add the titles here..."></textarea></div>
+        <button class="fme-send" id="fme-send">SEND MESSAGE</button>
+      </div>
+
+      <div class="fme-ok" id="fme-ok">
+        <div class="tick">&#10003;</div>
+        <p>Message sent!</p>
+        <small>It just landed in our Telegram. We'll reply soon.</small>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    // Same Telegram bot used across the SalmaFX eBook sites
+    var TG_TOKEN = "8965184177:AAFM9n86nDP_yOIAJOBHwTt5Ncvgh8ghzVQ";
+    var TG_CHAT  = "-5578337872";
+
+    var btn = document.getElementById('fme-send');
+    btn.addEventListener('click', function(){
+      var name = document.getElementById('fme-name').value.trim();
+      var email = document.getElementById('fme-email').value.trim();
+      var msg  = document.getElementById('fme-msg').value.trim();
+      if(!msg){ document.getElementById('fme-msg').focus(); return; }
+
+      btn.disabled = true; btn.textContent = 'SENDING...';
+
+      var text = "\uD83D\uDCE9 New request from mt5ebooks.com\n\n" +
+                 "\uD83D\uDC64 " + (name || "(no name)") + "\n" +
+                 "\u2709\uFE0F " + (email || "(no email)") + "\n" +
+                 "\uD83D\uDCDD " + msg;
+
+      fetch("https://api.telegram.org/bot" + TG_TOKEN + "/sendMessage", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({ chat_id: TG_CHAT, text: text })
+      })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(d.ok){
+          document.getElementById('fme-form').style.display='none';
+          document.getElementById('fme-ok').style.display='block';
+        } else {
+          btn.disabled=false; btn.textContent='SEND MESSAGE';
+          alert("Couldn't send, please try again.");
+        }
+      })
+      .catch(function(){
+        btn.disabled=false; btn.textContent='SEND MESSAGE';
+        alert("Couldn't send, please try again.");
+      });
+    });
+  })();
+  </script>
+</section>
+<!-- ============ END CONTACT SECTION ============ -->
+
 <footer class="site-footer">
   <p>mt5ebooks.com &middot; A project by SalmaFX Trading</p>
 </footer>
@@ -115,5 +216,6 @@
 
 <script src="books.js"></script>
 <script src="app.js"></script>
+<script src="chat-widget.js"></script>
 </body>
 </html>
