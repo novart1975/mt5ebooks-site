@@ -1,5 +1,60 @@
 const TELEGRAM_USERNAME = "Abu0Salma";
 
+// ---- Language state ----
+const LANG_STORAGE_KEY = "mt5ebooks_lang";
+
+function detectInitialLang() {
+  const saved = localStorage.getItem(LANG_STORAGE_KEY);
+  if (saved === "en" || saved === "ar") return saved;
+  const nav = (navigator.language || navigator.userLanguage || "").toLowerCase();
+  return nav.startsWith("ar") ? "ar" : "en";
+}
+
+let currentLang = detectInitialLang();
+
+function getBookTitle(book, idx) {
+  if (currentLang === "ar" && typeof BOOKS_AR !== "undefined" && BOOKS_AR[idx] && BOOKS_AR[idx].title) {
+    return BOOKS_AR[idx].title;
+  }
+  return book.title;
+}
+function getBookAuthor(book, idx) {
+  if (currentLang === "ar" && typeof BOOKS_AR !== "undefined" && BOOKS_AR[idx] && BOOKS_AR[idx].author) {
+    return BOOKS_AR[idx].author;
+  }
+  return book.author;
+}
+function getCategoryLabel(cat) {
+  if (currentLang === "ar" && typeof CATEGORY_AR !== "undefined" && CATEGORY_AR[cat]) {
+    return CATEGORY_AR[cat];
+  }
+  return cat;
+}
+
+function applyStaticTranslations() {
+  const dict = I18N[currentLang];
+  document.documentElement.setAttribute("dir", currentLang === "ar" ? "rtl" : "ltr");
+  document.documentElement.setAttribute("lang", currentLang === "ar" ? "ar" : "en");
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    if (dict[key] !== undefined) el.placeholder = dict[key];
+  });
+  const toggleBtn = document.getElementById("lang-toggle");
+  if (toggleBtn) toggleBtn.textContent = currentLang === "ar" ? "EN" : "AR";
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem(LANG_STORAGE_KEY, lang);
+  applyStaticTranslations();
+  populateCategories();
+  renderShelf();
+}
+
 const shelf = document.getElementById("shelf");
 const emptyState = document.getElementById("empty-state");
 const searchInput = document.getElementById("search");
@@ -27,59 +82,75 @@ function telegramLink(book) {
 }
 
 function populateCategories() {
+  const previousValue = categorySelect.value || "all";
+  // remove all but the first ("All categories") option
+  while (categorySelect.options.length > 1) categorySelect.remove(1);
   const cats = [...new Set(BOOKS.map(b => b.category))].sort();
   cats.forEach(cat => {
     const opt = document.createElement("option");
     opt.value = cat;
-    opt.textContent = cat;
+    opt.textContent = getCategoryLabel(cat);
     categorySelect.appendChild(opt);
   });
+  categorySelect.value = previousValue;
 }
 
 function renderShelf() {
   const query = searchInput.value.trim().toLowerCase();
   const cat = categorySelect.value;
+  const dict = I18N[currentLang];
 
-  const filtered = BOOKS.filter(b => {
-    const matchesQuery = !query ||
-      b.title.toLowerCase().includes(query) ||
-      b.author.toLowerCase().includes(query);
-    const matchesCat = cat === "all" || b.category === cat;
-    return matchesQuery && matchesCat;
-  });
+  const filtered = BOOKS
+    .map((b, idx) => ({ book: b, idx }))
+    .filter(({ book: b, idx }) => {
+      const arEntry = (typeof BOOKS_AR !== "undefined") ? BOOKS_AR[idx] : undefined;
+      const matchesQuery = !query ||
+        b.title.toLowerCase().includes(query) ||
+        b.author.toLowerCase().includes(query) ||
+        (arEntry && arEntry.title && arEntry.title.includes(query)) ||
+        (arEntry && arEntry.author && arEntry.author.includes(query));
+      const matchesCat = cat === "all" || b.category === cat;
+      return matchesQuery && matchesCat;
+    });
 
   shelf.innerHTML = "";
   emptyState.hidden = filtered.length > 0;
-  resultCount.textContent = `${filtered.length} of ${BOOKS.length}`;
+  resultCount.textContent = `${filtered.length} ${dict.resultOf} ${BOOKS.length}`;
 
-  filtered.forEach(book => {
+  filtered.forEach(({ book, idx }) => {
+    const displayTitle = getBookTitle(book, idx);
+    const displayAuthor = getBookAuthor(book, idx);
+    const displayCat = getCategoryLabel(book.category);
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
       <div class="card-cover">
-        <span class="card-tag">${book.category}</span>
-        <img src="${book.cover}" alt="${book.title} cover" loading="lazy">
+        <span class="card-tag">${displayCat}</span>
+        <img src="${book.cover}" alt="${displayTitle} cover" loading="lazy">
       </div>
       <div class="card-body">
-        <p class="card-title">${book.title}</p>
-        <p class="card-author">${book.author}</p>
+        <p class="card-title">${displayTitle}</p>
+        <p class="card-author">${displayAuthor}</p>
         <div class="card-footer">
           <span class="card-price">$9.99</span>
-          <button class="card-btn" type="button">Get this book</button>
+          <button class="card-btn" type="button">${dict.getThisBook}</button>
         </div>
       </div>
     `;
-    card.addEventListener("click", () => openModal(book));
+    card.addEventListener("click", () => openModal(book, idx));
     shelf.appendChild(card);
   });
 }
 
-function openModal(book) {
+function openModal(book, idx) {
+  const displayTitle = getBookTitle(book, idx);
+  const displayAuthor = getBookAuthor(book, idx);
+  const displayCat = getCategoryLabel(book.category);
   modalImg.src = book.cover;
-  modalImg.alt = book.title + " cover";
-  modalCat.textContent = book.category;
-  modalTitle.textContent = book.title;
-  modalAuthor.textContent = book.author;
+  modalImg.alt = displayTitle + " cover";
+  modalCat.textContent = displayCat;
+  modalTitle.textContent = displayTitle;
+  modalAuthor.textContent = displayAuthor;
   modalTelegram.href = telegramLink(book);
   modalOverlay.classList.add("open");
   document.body.style.overflow = "hidden";
@@ -103,6 +174,11 @@ categorySelect.addEventListener("change", renderShelf);
 
 document.getElementById("telegram-link").href = telegramLink();
 
+document.getElementById("lang-toggle").addEventListener("click", () => {
+  setLang(currentLang === "ar" ? "en" : "ar");
+});
+
+applyStaticTranslations();
 populateCategories();
 renderShelf();
 statCount.textContent = BOOKS.length;
