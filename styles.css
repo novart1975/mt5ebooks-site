@@ -69,6 +69,21 @@ img { max-width: 200%; display: block; }
 }
 .howto-link:hover { border-color: var(--gold); color: var(--gold); }
 
+.topbar-actions { display: flex; align-items: center; gap: 10px; }
+.lang-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 7px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.lang-toggle:hover { border-color: var(--gold); color: var(--gold); }
+
 /* Promo banner */
 .promo-banner-wrap { max-width: 480px; margin: 16px auto 0; padding: 0 24px; }
 .promo-banner-img { width: 100%; height: auto; border-radius: var(--radius-sm); display: block; }
@@ -349,4 +364,41 @@ img { max-width: 200%; display: block; }
 @media (max-width: 480px) {
   .steps { grid-template-columns: 1fr; }
   .hero-stats { gap: 24px; }
+}
+
+/* ---- RTL / Arabic mode ---- */
+html[dir="rtl"] body {
+  font-family: 'Cairo', 'Inter', -apple-system, sans-serif;
+}
+html[dir="rtl"] .brand-sub { margin-left: 0; margin-right: 6px; }
+html[dir="rtl"] .eyebrow,
+html[dir="rtl"] .hero h1,
+html[dir="rtl"] .hero-sub,
+html[dir="rtl"] .hero-inner,
+html[dir="rtl"] .howto-inner,
+html[dir="rtl"] .howto h2 {
+  font-family: 'Cairo', serif;
+}
+html[dir="rtl"] .card-title,
+html[dir="rtl"] .modal-body h3 {
+  font-family: 'Cairo', serif;
+}
+html[dir="rtl"] .search-icon { order: 2; }
+html[dir="rtl"] .search-box input { text-align: right; }
+html[dir="rtl"] #category-filter { font-family: 'Cairo', 'Inter', sans-serif; }
+html[dir="rtl"] .card-tag { left: auto; right: 8px; }
+html[dir="rtl"] .modal-close { right: auto; left: 12px; }
+html[dir="rtl"] .steps { text-align: right; }
+html[dir="rtl"] .contact-row { direction: ltr; }
+html[dir="rtl"] .step-num { margin-left: 12px; margin-bottom: 0; }
+html[dir="rtl"] .step { text-align: right; }
+html[dir="rtl"] .modal-cat,
+html[dir="rtl"] .modal-body,
+html[dir="rtl"] .modal-instructions,
+html[dir="rtl"] .modal-author,
+html[dir="rtl"] .card-body,
+html[dir="rtl"] .empty-state,
+html[dir="rtl"] .site-footer,
+html[dir="rtl"] .howto-note {
+  font-family: 'Cairo', 'Inter', sans-serif;
 }
