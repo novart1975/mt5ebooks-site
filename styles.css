@@ -88,7 +88,7 @@ img { max-width: 200%; display: block; }
 
 /* Promo banner */
 .promo-banner-wrap { background: var(--green); padding: 4px 24px 20px; }
-.promo-banner-img { width: 100%; max-width: 900px; height: auto; margin: 0 auto; border-radius: var(--radius-sm); display: block; }
+.promo-banner-img { width: 100%; max-width: 1400px; height: auto; margin: 0 auto; border-radius: var(--radius-sm); display: block; }
 
 /* Hero */
 .hero { background: var(--green); padding: 32px 24px 56px; }
