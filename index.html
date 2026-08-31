@@ -1,550 +1,212 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="light">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>متجر البطاقات الرقمية | شحن فوري</title>
-<meta name="description" content="متجر بطاقات رقمية: شحن ألعاب، بطاقات المتاجر الرقمية، ورصيد الاتصالات. الطلب عبر تيليجرام والتسليم خلال دقائق.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Tajawal:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
-<style>
-/* ============ 1) الإعدادات المرئية ============ */
-:root{
-  --ink:#0B1030;
-  --ink-2:#141C4B;
-  --ink-3:#1B245E;
-  --foil:#E6B84C;
-  --foil-deep:#A87C22;
-  --silver:#C3C8D6;
-  --text:#EEF1FA;
-  --muted:#98A1C6;
-  --line:rgba(255,255,255,.10);
-  --ok:#4ED2A2;
-  --radius:14px;
-  --wrap:1120px;
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{
-  background:var(--ink);
-  color:var(--text);
-  font-family:"Tajawal",system-ui,sans-serif;
-  font-size:16px;
-  line-height:1.7;
-  -webkit-font-smoothing:antialiased;
-}
-h1,h2,h3{font-family:"Almarai",system-ui,sans-serif;line-height:1.3;margin:0}
-p{margin:0}
-a{color:inherit}
-img{max-width:100%}
-button{font:inherit;cursor:pointer}
-:focus-visible{outline:2px solid var(--foil);outline-offset:3px;border-radius:6px}
-.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
-.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;direction:ltr;unicode-bidi:isolate}
-
-/* ============ 2) الهيدر ============ */
-header{
-  position:sticky;top:0;z-index:40;
-  background:rgba(11,16,48,.92);
-  backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--line);
-}
-.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
-.brand{display:flex;align-items:center;gap:10px;font-family:"Almarai";font-weight:800;font-size:19px;text-decoration:none}
-.brand-mark{
-  width:34px;height:24px;border-radius:5px;
-  background:linear-gradient(135deg,var(--foil),var(--foil-deep));
-  position:relative;flex:none;
-}
-.brand-mark::after{content:"";position:absolute;inset:auto 4px 5px 4px;height:5px;border-radius:2px;background:rgba(11,16,48,.55)}
-.tg-link{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:9px 16px;border-radius:999px;
-  border:1px solid var(--foil);color:var(--foil);
-  text-decoration:none;font-weight:700;font-size:14px;
-}
-.tg-link:hover{background:var(--foil);color:var(--ink)}
-
-/* ============ 3) الهيرو + البطاقة القابلة للحك ============ */
-.hero{position:relative;padding:56px 0 44px;overflow:hidden}
-.hero::before{
-  content:"";position:absolute;top:-180px;left:50%;transform:translateX(-50%);
-  width:760px;height:460px;border-radius:50%;
-  background:radial-gradient(circle,rgba(230,184,76,.16),transparent 65%);
-  pointer-events:none;
-}
-.hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
-.hero h1{font-size:clamp(30px,4.4vw,46px);font-weight:800;letter-spacing:-.5px}
-.hero p.lede{color:var(--muted);font-size:18px;margin-top:14px;max-width:46ch}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:13px 24px;border-radius:10px;border:1px solid transparent;
-  font-weight:700;text-decoration:none;font-size:15px;
-}
-.btn-gold{background:linear-gradient(135deg,var(--foil),var(--foil-deep));color:#2A1D00}
-.btn-gold:hover{filter:brightness(1.08)}
-.btn-ghost{border-color:var(--line);color:var(--text);background:transparent}
-.btn-ghost:hover{border-color:var(--foil);color:var(--foil)}
-.trust{display:flex;flex-wrap:wrap;gap:18px;margin-top:26px;color:var(--muted);font-size:14px}
-.trust span{display:flex;align-items:center;gap:7px}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:none}
-
-/* بطاقة الهيرو */
-.showcard{
-  position:relative;aspect-ratio:1.62/1;border-radius:18px;padding:22px;
-  background:
-    linear-gradient(150deg,#233070 0%,#151D50 55%,#0F1540 100%);
-  border:1px solid rgba(230,184,76,.4);
-  box-shadow:0 30px 60px -30px rgba(0,0,0,.9);
-  display:flex;flex-direction:column;justify-content:space-between;
-}
-.showcard::after{
-  content:"";position:absolute;inset:0;border-radius:18px;pointer-events:none;
-  background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.07) 50%,transparent 60%);
-}
-.showcard .cc-top{display:flex;justify-content:space-between;align-items:flex-start}
-.chip{width:42px;height:31px;border-radius:6px;background:linear-gradient(135deg,#F0D48A,#B4862A)}
-.chip-lines{width:42px;height:31px;border-radius:6px;background:repeating-linear-gradient(90deg,rgba(11,16,48,.45) 0 2px,transparent 2px 8px)}
-.showcard h2{font-size:20px;font-weight:700}
-.scratch-zone{position:relative;height:60px;border-radius:8px;overflow:hidden;background:#0C1238;border:1px dashed rgba(255,255,255,.16)}
-.scratch-code{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-family:"IBM Plex Mono",monospace;font-size:19px;letter-spacing:3px;color:var(--foil);
-  direction:ltr;
-}
-#scratchCanvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab}
-.scratch-hint{margin-top:9px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;gap:10px}
-.link-btn{background:none;border:none;color:var(--foil);text-decoration:underline;padding:0;font-size:13px}
-
-/* ============ 4) الفلاتر ============ */
-.shop{padding:20px 0 60px}
-.shop-head{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-bottom:22px}
-.tabs{display:flex;flex-wrap:wrap;gap:8px}
-.tab{
-  padding:9px 16px;border-radius:999px;background:transparent;
-  border:1px solid var(--line);color:var(--muted);font-size:14px;font-weight:500;
-}
-.tab:hover{color:var(--text)}
-.tab[aria-pressed="true"]{background:rgba(230,184,76,.12);border-color:var(--foil);color:var(--foil);font-weight:700}
-.search{
-  background:var(--ink-2);border:1px solid var(--line);color:var(--text);
-  padding:11px 15px;border-radius:10px;min-width:230px;font-size:14px;
-}
-.search::placeholder{color:var(--muted)}
-
-/* ============ 5) شبكة البطاقات ============ */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
-.card{
-  position:relative;background:linear-gradient(160deg,var(--ink-3),var(--ink-2));
-  border:1px solid var(--line);border-radius:var(--radius);
-  padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px;
-}
-.card::before,.card::after{
-  content:"";position:absolute;width:16px;height:16px;border-radius:50%;
-  background:var(--ink);top:50%;transform:translateY(-50%);
-}
-.card::before{right:-9px}
-.card::after{left:-9px}
-.card-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.tag{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:3px 9px;border-radius:999px}
-.card h3{font-size:17px;font-weight:700}
-.card .amount{color:var(--foil);font-weight:700;font-size:15px}
-.price-row{
-  display:flex;align-items:baseline;justify-content:space-between;gap:10px;
-  border-top:1px dashed rgba(255,255,255,.14);padding-top:12px;margin-top:auto;
-}
-.price{font-family:"IBM Plex Mono",monospace;font-size:22px;font-weight:600;direction:ltr}
-.price small{font-size:12px;color:var(--muted);font-weight:500}
-.order-btn{
-  width:100%;padding:11px;border-radius:9px;border:1px solid var(--foil);
-  background:transparent;color:var(--foil);font-weight:700;font-size:14px;
-}
-.order-btn:hover{background:var(--foil);color:var(--ink)}
-.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 20px;border:1px dashed var(--line);border-radius:var(--radius)}
-
-/* ============ 6) خطوات الشراء ============ */
-.steps{padding:56px 0;border-top:1px solid var(--line)}
-.steps h2{font-size:26px;margin-bottom:26px}
-.steps ol{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
-.steps li{counter-increment:s;position:relative;padding-right:52px}
-.steps li::before{
-  content:counter(s);position:absolute;right:0;top:2px;
-  width:36px;height:36px;border-radius:50%;
-  border:1px solid var(--foil);color:var(--foil);
-  font-family:"IBM Plex Mono",monospace;font-size:15px;
-  display:flex;align-items:center;justify-content:center;
-}
-.steps h3{font-size:16px;margin-bottom:5px}
-.steps p{color:var(--muted);font-size:14.5px}
-
-/* ============ 7) الفوتر ============ */
-footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:14px}
-.foot{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
-
-/* ============ 8) نافذة الطلب ============ */
-dialog{
-  border:1px solid var(--line);border-radius:16px;padding:0;
-  background:var(--ink-2);color:var(--text);max-width:430px;width:calc(100% - 32px);
-}
-dialog::backdrop{background:rgba(4,7,25,.75)}
-.modal-in{padding:24px}
-.modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:18px}
-.modal-head h3{font-size:19px}
-.x{background:none;border:none;color:var(--muted);font-size:24px;line-height:1;padding:0 4px}
-.field{margin-bottom:16px}
-.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
-.field select,.field input{
-  width:100%;background:var(--ink);border:1px solid var(--line);color:var(--text);
-  padding:11px 13px;border-radius:9px;font-size:15px;font-family:inherit;
-}
-.summary{
-  background:var(--ink);border:1px dashed var(--line);border-radius:10px;
-  padding:14px;margin-bottom:18px;font-size:14.5px;
-}
-.summary div{display:flex;justify-content:space-between;gap:10px;padding:3px 0}
-.summary .total{border-top:1px solid var(--line);margin-top:8px;padding-top:9px;font-weight:700;color:var(--foil)}
-.modal-actions{display:grid;gap:9px}
-.note{font-size:13px;color:var(--muted);margin-top:14px;text-align:center}
-.toast{
-  position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);
-  background:var(--ok);color:#04231A;padding:11px 22px;border-radius:999px;
-  font-weight:700;font-size:14px;opacity:0;pointer-events:none;transition:.25s;z-index:99;
-}
-.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-
-@media (max-width:860px){
-  .hero-grid{grid-template-columns:1fr;gap:34px}
-  .showcard{max-width:400px}
-  .hero{padding:38px 0 30px}
-}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>لوميناري — سوق المنتجات الرقمية الفاخر</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>
-  <div class="wrap bar">
-    <a class="brand" href="#"><span class="brand-mark"></span>متجر البطاقات</a>
-    <a class="tg-link" id="tgHeader" href="#" target="_blank" rel="noopener">تواصل على تيليجرام</a>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <h1>بطاقات شحن رقمية، بتوصلك بالمحادثة خلال دقائق</h1>
-      <p class="lede">اختر البطاقة، أرسل الطلب على التيليجرام، وبعد تأكيد التحويل بيوصلك الكود مباشرة. بدون تسجيل وبدون انتظار طويل.</p>
-      <div class="hero-actions">
-        <a class="btn btn-gold" href="#shop">تصفّح البطاقات</a>
-        <a class="btn btn-ghost" href="#how">كيف بتطلب؟</a>
-      </div>
-      <div class="trust">
-        <span><i class="dot"></i>أكواد أصلية 100%</span>
-        <span><i class="dot"></i>تسليم خلال دقائق</span>
-        <span><i class="dot"></i>دعم مباشر بالعربي</span>
-      </div>
+    <!-- ===== BACKGROUND MESH ===== -->
+    <div class="bg-mesh">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
     </div>
 
-    <div>
-      <div class="showcard">
-        <div class="cc-top">
-          <div class="chip"></div>
-          <div class="chip-lines"></div>
+    <!-- ===== LIQUID GLASS NAVIGATION ===== -->
+    <div class="nav-wrapper">
+        <nav class="liquid-nav" id="nav">
+            <div class="liquid-glare-container">
+                <div class="liquid-glare" id="glare"></div>
+            </div>
+
+            <div class="nav-items">
+                <div class="active-pill" id="activePill"></div>
+
+                <button class="nav-btn active" data-target="hero">
+                    <span class="btn-content">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        <span>الرئيسية</span>
+                    </span>
+                </button>
+
+                <button class="nav-btn" data-target="products">
+                    <span class="btn-content">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                        <span>المنتجات</span>
+                    </span>
+                </button>
+
+                <button class="nav-btn" data-target="categories">
+                    <span class="btn-content">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <span>التصنيفات</span>
+                    </span>
+                </button>
+
+                <button class="nav-btn" data-target="discovery">
+                    <span class="btn-content">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span>اكتشاف</span>
+                    </span>
+                </button>
+
+                <button class="nav-btn" data-target="cta">
+                    <span class="btn-content">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span>تواصل</span>
+                    </span>
+                </button>
+            </div>
+
+            <div class="divider"></div>
+
+            <button class="theme-btn" id="themeBtn" aria-label="تبديل السمة">
+                <div class="theme-icon-wrapper">
+                    <svg class="sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </div>
+            </button>
+        </nav>
+    </div>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="hero">
+        <div class="hero-badge">✨ منتجات رقمية متميزة</div>
+        <h1>سوق رقمي <span class="accent">فاخر</span></h1>
+        <p>اكتشف مجموعتنا الحصرية من قوالب UI، الكتب الإلكترونية، أدوات التصميم، والدورات التدريبية. منصة متكاملة للمبدعين والمطورين.</p>
+        <div class="hero-actions">
+            <a href="#products" class="btn-primary">استكشف المنتجات</a>
+            <a href="#categories" class="btn-secondary">تصفح التصنيفات</a>
         </div>
-        <h2>بطاقة شحن</h2>
-        <div>
-          <div class="scratch-zone">
-            <div class="scratch-code mono" id="codeText">7492 - 1180 - 5536</div>
-            <canvas id="scratchCanvas"></canvas>
-          </div>
-          <div class="scratch-hint">
-            <span>احك الشريط الفضي زي البطاقة الحقيقية</span>
-            <button class="link-btn" id="revealBtn">اكشف الكود</button>
-          </div>
+
+        <div class="floating-cards">
+            <div class="float-card float-1"><span>🎨</span> واجهات UI</div>
+            <div class="float-card float-2"><span>📚</span> كتب إلكترونية</div>
+            <div class="float-card float-3"><span>⚡</span> قوالب</div>
+            <div class="float-card float-4"><span>🛠️</span> أدوات برمجية</div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="shop wrap" id="shop">
-  <div class="shop-head">
-    <div class="tabs" id="tabs">
-      <button class="tab" data-cat="all" aria-pressed="true">الكل</button>
-      <button class="tab" data-cat="games" aria-pressed="false">بطاقات ألعاب</button>
-      <button class="tab" data-cat="stores" aria-pressed="false">متاجر رقمية</button>
-      <button class="tab" data-cat="telecom" aria-pressed="false">رصيد اتصالات</button>
-    </div>
-    <input class="search" id="search" type="search" placeholder="ابحث عن بطاقة… مثال: ببجي" aria-label="ابحث عن بطاقة">
-  </div>
-  <div class="grid" id="grid"></div>
-</section>
+    <!-- ===== PRODUCTS SECTION ===== -->
+    <section class="section" id="products">
+        <div class="section-header">
+            <h2>منتجات <span class="accent">مميزة</span></h2>
+            <p>أفضل الاختيارات لمشاريعك الإبداعية</p>
+        </div>
+        <div class="product-grid" id="productGrid">
+            <!-- سيتم إنشاؤها بواسطة JavaScript -->
+        </div>
+    </section>
 
-<section class="steps" id="how">
-  <div class="wrap">
-    <h2>أربع خطوات وبيوصلك الكود</h2>
-    <ol>
-      <li>
-        <h3>اختر البطاقة</h3>
-        <p>حدد نوع البطاقة والفئة والكمية من المتجر فوق.</p>
-      </li>
-      <li>
-        <h3>أرسل الطلب</h3>
-        <p>زر «اطلب عبر تيليجرام» بيفتح المحادثة وطلبك جاهز فيها.</p>
-      </li>
-      <li>
-        <h3>حوّل المبلغ</h3>
-        <p>بنبعتلك تفاصيل الدفع بالمحادثة، وبتحوّل المبلغ وترسل صورة التحويل.</p>
-      </li>
-      <li>
-        <h3>استلم الكود</h3>
-        <p>بعد تأكيد التحويل بنرسل لك كود البطاقة بالمحادثة نفسها.</p>
-      </li>
-    </ol>
-  </div>
-</section>
+    <!-- ===== CATEGORIES SECTION ===== -->
+    <section class="section" id="categories">
+        <div class="section-header">
+            <h2>تصفح <span class="accent">التصنيفات</span></h2>
+            <p>اكتشف المنتجات حسب اهتماماتك</p>
+        </div>
+        <div class="category-grid" id="categoryGrid">
+            <!-- سيتم إنشاؤها بواسطة JavaScript -->
+        </div>
+    </section>
 
-<footer>
-  <div class="wrap foot">
-    <span>© <span id="year"></span> متجر البطاقات — الأردن</span>
-    <span>الأسعار بالدينار الأردني وقابلة للتغيير حسب السوق.</span>
-  </div>
-</footer>
+    <!-- ===== DISCOVERY SECTION ===== -->
+    <section class="section" id="discovery">
+        <div class="discovery-glass">
+            <div class="discovery-header">
+                <h3>اكتشف المنتجات</h3>
+                <p>ابحث، صفّف، ورتب حسب احتياجاتك</p>
+            </div>
+            <div class="discovery-controls">
+                <div class="search-wrap">
+                    <input type="text" id="searchInput" placeholder="ابحث عن منتج..." />
+                    <button class="search-btn" id="searchBtn">🔍</button>
+                </div>
+                <div class="filter-group">
+                    <select id="categoryFilter">
+                        <option value="all">جميع التصنيفات</option>
+                        <option value="واجهات UI">واجهات UI</option>
+                        <option value="كتب إلكترونية">كتب إلكترونية</option>
+                        <option value="قوالب">قوالب</option>
+                        <option value="دورات">دورات</option>
+                        <option value="برمجيات">برمجيات</option>
+                        <option value="أصول تصميم">أصول تصميم</option>
+                    </select>
+                    <select id="sortFilter">
+                        <option value="popular">الأكثر شهرة</option>
+                        <option value="price-low">السعر: من الأقل للأعلى</option>
+                        <option value="price-high">السعر: من الأعلى للأقل</option>
+                    </select>
+                </div>
+            </div>
+            <div class="discovery-results" id="discoveryResults">
+                <!-- سيتم إنشاؤها بواسطة JavaScript -->
+            </div>
+        </div>
+    </section>
 
-<dialog id="orderModal">
-  <div class="modal-in">
-    <div class="modal-head">
-      <h3 id="mTitle">طلب بطاقة</h3>
-      <button class="x" id="mClose" aria-label="إغلاق">&times;</button>
-    </div>
+    <!-- ===== CTA SECTION ===== -->
+    <section class="cta-section" id="cta">
+        <div class="cta-glass">
+            <div class="cta-glow"></div>
+            <h2>مستعد لتطوير <span class="accent">مجموعتك الإبداعية؟</span></h2>
+            <p>انضم إلى آلاف المبدعين الذين يستخدمون لوميناري يومياً</p>
+            <a href="#products" class="btn-primary">ابدأ الآن</a>
+        </div>
+    </section>
 
-    <div class="field">
-      <label for="mQty">الكمية</label>
-      <select id="mQty">
-        <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
-      </select>
-    </div>
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="logo-text">✦ لوميناري</div>
+                <p>سوق المنتجات الرقمية الفاخر</p>
+            </div>
+            <div class="footer-links">
+                <a href="#products">المنتجات</a>
+                <a href="#categories">التصنيفات</a>
+                <a href="#">عن الشركة</a>
+                <a href="#">اتصل بنا</a>
+            </div>
+            <div class="footer-social">
+                <a href="#">𝕏</a>
+                <a href="#">𝔽</a>
+                <a href="#">𝕀</a>
+                <a href="#">𝕐</a>
+            </div>
+            <div class="footer-copy">© 2026 لوميناري. جميع الحقوق محفوظة.</div>
+        </div>
+    </footer>
 
-    <div class="summary">
-      <div><span>البطاقة</span><span id="sName">—</span></div>
-      <div><span>سعر الحبة</span><span class="mono" id="sUnit">—</span></div>
-      <div><span>الكمية</span><span id="sQty">1</span></div>
-      <div class="total"><span>الإجمالي</span><span class="mono" id="sTotal">—</span></div>
-    </div>
-
-    <div class="modal-actions">
-      <a class="btn btn-gold" id="mSend" href="#" target="_blank" rel="noopener">اطلب عبر تيليجرام</a>
-      <button class="btn btn-ghost" id="mCopy">انسخ نص الطلب</button>
-    </div>
-    <p class="note">الدفع بيتم بالمحادثة، والكود بيوصلك بعد تأكيد التحويل.</p>
-  </div>
-</dialog>
-
-<div class="toast" id="toast">تم نسخ الطلب</div>
-
-<script>
-/* =====================================================================
-   إعدادات المتجر — عدّل من هون فقط
-   ===================================================================== */
-const CONFIG = {
-  telegram: "YourBotUsername",   // بدون @ — اسم البوت أو حسابك على تيليجرام
-  currency: "د.أ",
-  storeName: "متجر البطاقات"
-};
-
-/* المنتجات: id قصير (حروف/أرقام إنجليزية فقط) لأنه بينبعت مع رابط البوت */
-const PRODUCTS = [
-  // --- بطاقات ألعاب ---
-  { id:"pubg60",   cat:"games",   brand:"PUBG Mobile",  label:"ببجي موبايل",     amount:"60 UC",        price:1.20 },
-  { id:"pubg325",  cat:"games",   brand:"PUBG Mobile",  label:"ببجي موبايل",     amount:"325 UC",       price:5.50 },
-  { id:"pubg660",  cat:"games",   brand:"PUBG Mobile",  label:"ببجي موبايل",     amount:"660 UC",       price:10.50 },
-  { id:"pubg1800", cat:"games",   brand:"PUBG Mobile",  label:"ببجي موبايل",     amount:"1800 UC",      price:27.00 },
-  { id:"ff100",    cat:"games",   brand:"Free Fire",    label:"فري فاير",        amount:"100 جوهرة",    price:1.50 },
-  { id:"ff310",    cat:"games",   brand:"Free Fire",    label:"فري فاير",        amount:"310 جوهرة",    price:4.20 },
-  { id:"ff520",    cat:"games",   brand:"Free Fire",    label:"فري فاير",        amount:"520 جوهرة",    price:6.90 },
-  { id:"jaw10",    cat:"games",   brand:"Jawaker",      label:"جواكر",           amount:"10,000 توكن",  price:2.00 },
-  { id:"rbx800",   cat:"games",   brand:"Roblox",       label:"روبلوكس",         amount:"800 Robux",    price:8.50 },
-
-  // --- متاجر رقمية ---
-  { id:"gp10",     cat:"stores",  brand:"Google Play",  label:"جوجل بلاي",       amount:"10 $",         price:8.00 },
-  { id:"gp25",     cat:"stores",  brand:"Google Play",  label:"جوجل بلاي",       amount:"25 $",         price:19.50 },
-  { id:"gp50",     cat:"stores",  brand:"Google Play",  label:"جوجل بلاي",       amount:"50 $",         price:38.00 },
-  { id:"itn10",    cat:"stores",  brand:"iTunes",       label:"آيتونز",          amount:"10 $",         price:8.20 },
-  { id:"itn25",    cat:"stores",  brand:"iTunes",       label:"آيتونز",          amount:"25 $",         price:19.90 },
-  { id:"stm20",    cat:"stores",  brand:"Steam",        label:"ستيم",            amount:"20 $",         price:16.00 },
-  { id:"stm50",    cat:"stores",  brand:"Steam",        label:"ستيم",            amount:"50 $",         price:39.00 },
-  { id:"psn20",    cat:"stores",  brand:"PlayStation",  label:"بلايستيشن",       amount:"20 $",         price:16.50 },
-
-  // --- رصيد اتصالات ---
-  { id:"zain5",    cat:"telecom", brand:"زين",          label:"شحن رصيد",        amount:"5 د.أ",        price:5.25 },
-  { id:"zain10",   cat:"telecom", brand:"زين",          label:"شحن رصيد",        amount:"10 د.أ",       price:10.40 },
-  { id:"umn5",     cat:"telecom", brand:"أمنية",        label:"شحن رصيد",        amount:"5 د.أ",        price:5.25 },
-  { id:"umn10",    cat:"telecom", brand:"أمنية",        label:"شحن رصيد",        amount:"10 د.أ",       price:10.40 },
-  { id:"org5",     cat:"telecom", brand:"أورنج",        label:"شحن رصيد",        amount:"5 د.أ",        price:5.25 },
-  { id:"org10",    cat:"telecom", brand:"أورنج",        label:"شحن رصيد",        amount:"10 د.أ",       price:10.40 }
-];
-
-const CAT_NAMES = { games:"بطاقات ألعاب", stores:"متاجر رقمية", telecom:"رصيد اتصالات" };
-
-/* ================= عرض المنتجات ================= */
-const grid = document.getElementById("grid");
-const search = document.getElementById("search");
-let activeCat = "all";
-
-const money = n => n.toFixed(2);
-
-function render(){
-  const q = search.value.trim().toLowerCase();
-  const list = PRODUCTS.filter(p=>{
-    const okCat = activeCat === "all" || p.cat === activeCat;
-    const okQ = !q || (p.brand+" "+p.label+" "+p.amount).toLowerCase().includes(q);
-    return okCat && okQ;
-  });
-
-  if(!list.length){
-    grid.innerHTML = '<div class="empty">ما في بطاقة بهذا الاسم. جرّب كلمة أقصر أو تصفّح كل الأقسام.</div>';
-    return;
-  }
-
-  grid.innerHTML = list.map(p => `
-    <article class="card">
-      <div class="card-top">
-        <h3>${p.brand}</h3>
-        <span class="tag">${CAT_NAMES[p.cat]}</span>
-      </div>
-      <div>
-        <div class="amount">${p.amount}</div>
-        <div style="color:var(--muted);font-size:14px">${p.label}</div>
-      </div>
-      <div class="price-row">
-        <span class="price">${money(p.price)} <small>${CONFIG.currency}</small></span>
-      </div>
-      <button class="order-btn" data-id="${p.id}">اطلب الآن</button>
-    </article>
-  `).join("");
-}
-
-document.getElementById("tabs").addEventListener("click", e=>{
-  const btn = e.target.closest(".tab");
-  if(!btn) return;
-  activeCat = btn.dataset.cat;
-  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-pressed", t===btn));
-  render();
-});
-search.addEventListener("input", render);
-
-/* ================= نافذة الطلب ================= */
-const modal = document.getElementById("orderModal");
-const qtySel = document.getElementById("mQty");
-let current = null;
-
-grid.addEventListener("click", e=>{
-  const btn = e.target.closest(".order-btn");
-  if(!btn) return;
-  current = PRODUCTS.find(p=>p.id === btn.dataset.id);
-  qtySel.value = "1";
-  fillModal();
-  modal.showModal();
-});
-
-function orderText(){
-  const qty = +qtySel.value;
-  return `طلب جديد من ${CONFIG.storeName}\n`
-       + `البطاقة: ${current.brand} — ${current.amount}\n`
-       + `الكمية: ${qty}\n`
-       + `الإجمالي: ${money(current.price*qty)} ${CONFIG.currency}\n`
-       + `الرمز: ${current.id}`;
-}
-
-function fillModal(){
-  const qty = +qtySel.value;
-  document.getElementById("mTitle").textContent = `${current.brand} — ${current.amount}`;
-  document.getElementById("sName").textContent  = `${current.brand} ${current.amount}`;
-  document.getElementById("sUnit").textContent  = `${money(current.price)} ${CONFIG.currency}`;
-  document.getElementById("sQty").textContent   = qty;
-  document.getElementById("sTotal").textContent = `${money(current.price*qty)} ${CONFIG.currency}`;
-  // رابط البوت: البارامتر start بيوصل للبوت جاهز (حروف/أرقام و _ - فقط)
-  document.getElementById("mSend").href = `https://t.me/${CONFIG.telegram}?start=ord-${current.id}-${qty}`;
-}
-
-qtySel.addEventListener("change", fillModal);
-document.getElementById("mClose").onclick = ()=> modal.close();
-modal.addEventListener("click", e=>{ if(e.target === modal) modal.close(); });
-
-/* نسخ نص الطلب */
-const toast = document.getElementById("toast");
-function showToast(msg){
-  toast.textContent = msg;
-  toast.classList.add("on");
-  setTimeout(()=>toast.classList.remove("on"), 1800);
-}
-document.getElementById("mCopy").onclick = async ()=>{
-  const txt = orderText();
-  try{
-    await navigator.clipboard.writeText(txt);
-    showToast("تم نسخ الطلب");
-  }catch{
-    const ta = document.createElement("textarea");
-    ta.value = txt; document.body.appendChild(ta); ta.select();
-    document.execCommand("copy"); ta.remove();
-    showToast("تم نسخ الطلب");
-  }
-};
-
-/* رابط الهيدر */
-document.getElementById("tgHeader").href = `https://t.me/${CONFIG.telegram}`;
-document.getElementById("year").textContent = new Date().getFullYear();
-
-/* ================= شريط الحك بالهيرو ================= */
-(function(){
-  const canvas = document.getElementById("scratchCanvas");
-  const ctx = canvas.getContext("2d");
-  let drawing = false, revealed = false;
-
-  function paint(){
-    const r = canvas.getBoundingClientRect();
-    canvas.width = r.width; canvas.height = r.height;
-    const g = ctx.createLinearGradient(0,0,r.width,r.height);
-    g.addColorStop(0,"#D9DDE8"); g.addColorStop(.5,"#A9B0C4"); g.addColorStop(1,"#C7CCD9");
-    ctx.fillStyle = g; ctx.fillRect(0,0,r.width,r.height);
-    ctx.fillStyle = "rgba(11,16,48,.45)";
-    ctx.font = "500 13px Tajawal, sans-serif";
-    ctx.textAlign = "center"; ctx.textBaseline = "middle";
-    ctx.fillText("اسحب هنا", r.width/2, r.height/2);
-    ctx.globalCompositeOperation = "destination-out";
-    revealed = false;
-  }
-  paint();
-  window.addEventListener("resize", ()=>{ if(!revealed) paint(); });
-
-  function scratch(e){
-    if(!drawing) return;
-    const r = canvas.getBoundingClientRect();
-    const x = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
-    const y = (e.touches ? e.touches[0].clientY : e.clientY) - r.top;
-    ctx.beginPath(); ctx.arc(x, y, 17, 0, Math.PI*2); ctx.fill();
-  }
-  const start = e => { drawing = true; scratch(e); };
-  const stop  = () => drawing = false;
-
-  canvas.addEventListener("mousedown", start);
-  canvas.addEventListener("mousemove", scratch);
-  window.addEventListener("mouseup", stop);
-  canvas.addEventListener("touchstart", e=>{ e.preventDefault(); start(e); }, {passive:false});
-  canvas.addEventListener("touchmove",  e=>{ e.preventDefault(); scratch(e); }, {passive:false});
-  canvas.addEventListener("touchend", stop);
-
-  document.getElementById("revealBtn").onclick = ()=>{
-    revealed = true;
-    ctx.globalCompositeOperation = "source-over";
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    canvas.style.display = "none";
-  };
-})();
-
-render();
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
