@@ -1,212 +1,125 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-theme="light">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>لوميناري — سوق المنتجات الرقمية الفاخر</title>
-    <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mt5ebooks.com — Forex & Trading eBooks</title>
+<meta name="description" content="A curated vault of forex and trading eBooks. Browse, pick what you need, and message us to get your copy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- ===== BACKGROUND MESH ===== -->
-    <div class="bg-mesh">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="brand-mark">mt5ebooks</span><span class="brand-sub">.com</span>
     </div>
-
-    <!-- ===== LIQUID GLASS NAVIGATION ===== -->
-    <div class="nav-wrapper">
-        <nav class="liquid-nav" id="nav">
-            <div class="liquid-glare-container">
-                <div class="liquid-glare" id="glare"></div>
-            </div>
-
-            <div class="nav-items">
-                <div class="active-pill" id="activePill"></div>
-
-                <button class="nav-btn active" data-target="hero">
-                    <span class="btn-content">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                        </svg>
-                        <span>الرئيسية</span>
-                    </span>
-                </button>
-
-                <button class="nav-btn" data-target="products">
-                    <span class="btn-content">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                        </svg>
-                        <span>المنتجات</span>
-                    </span>
-                </button>
-
-                <button class="nav-btn" data-target="categories">
-                    <span class="btn-content">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                        </svg>
-                        <span>التصنيفات</span>
-                    </span>
-                </button>
-
-                <button class="nav-btn" data-target="discovery">
-                    <span class="btn-content">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="2" y1="12" x2="22" y2="12"></line>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                        </svg>
-                        <span>اكتشاف</span>
-                    </span>
-                </button>
-
-                <button class="nav-btn" data-target="cta">
-                    <span class="btn-content">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        <span>تواصل</span>
-                    </span>
-                </button>
-            </div>
-
-            <div class="divider"></div>
-
-            <button class="theme-btn" id="themeBtn" aria-label="تبديل السمة">
-                <div class="theme-icon-wrapper">
-                    <svg class="sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                    <svg class="moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </div>
-            </button>
-        </nav>
+    <div class="topbar-actions">
+      <a href="#how-to-buy" class="howto-link" data-i18n="howToBuy">How to buy</a>
+      <button type="button" id="lang-toggle" class="lang-toggle">AR</button>
     </div>
+  </div>
+</header>
 
-    <!-- ===== HERO SECTION ===== -->
-    <section class="hero" id="hero">
-        <div class="hero-badge">✨ منتجات رقمية متميزة</div>
-        <h1>سوق رقمي <span class="accent">فاخر</span></h1>
-        <p>اكتشف مجموعتنا الحصرية من قوالب UI، الكتب الإلكترونية، أدوات التصميم، والدورات التدريبية. منصة متكاملة للمبدعين والمطورين.</p>
-        <div class="hero-actions">
-            <a href="#products" class="btn-primary">استكشف المنتجات</a>
-            <a href="#categories" class="btn-secondary">تصفح التصنيفات</a>
-        </div>
+<div class="promo-banner-wrap">
+  <img src="assets/bannar_1.jpg" alt="SalmaFX eBooks special offer — over 400 eBooks at $9.99 per book" class="promo-banner-img">
+</div>
 
-        <div class="floating-cards">
-            <div class="float-card float-1"><span>🎨</span> واجهات UI</div>
-            <div class="float-card float-2"><span>📚</span> كتب إلكترونية</div>
-            <div class="float-card float-3"><span>⚡</span> قوالب</div>
-            <div class="float-card float-4"><span>🛠️</span> أدوات برمجية</div>
-        </div>
-    </section>
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow" data-i18n="eyebrow">A trader's private collection, opened up</p>
+    <h1 data-i18n="heroTitle">The forex &amp; trading eBook vault</h1>
+    <p class="hero-sub" data-i18n="heroSub">Hand-picked guides on strategy, technical analysis, psychology and money management.
+    Scroll the shelf below, pick what you need, and message us to get your copy.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num" id="stat-count">16</span><span class="stat-label" data-i18n="titlesAvailable">titles available</span></div>
+      <div class="stat"><span class="stat-num">$9.99</span><span class="stat-label" data-i18n="perBook">per book</span></div>
+    </div>
+  </div>
+</section>
 
-    <!-- ===== PRODUCTS SECTION ===== -->
-    <section class="section" id="products">
-        <div class="section-header">
-            <h2>منتجات <span class="accent">مميزة</span></h2>
-            <p>أفضل الاختيارات لمشاريعك الإبداعية</p>
-        </div>
-        <div class="product-grid" id="productGrid">
-            <!-- سيتم إنشاؤها بواسطة JavaScript -->
-        </div>
-    </section>
+<div class="filterbar-wrap">
+  <div class="filterbar" id="filterbar">
+    <div class="search-box">
+      <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="text" id="search" placeholder="Search by title or author..." data-i18n-placeholder="searchPlaceholder" autocomplete="off">
+    </div>
+    <select id="category-filter">
+      <option value="all" data-i18n="allCategories">All categories</option>
+    </select>
+    <span class="result-count" id="result-count"></span>
+  </div>
+</div>
 
-    <!-- ===== CATEGORIES SECTION ===== -->
-    <section class="section" id="categories">
-        <div class="section-header">
-            <h2>تصفح <span class="accent">التصنيفات</span></h2>
-            <p>اكتشف المنتجات حسب اهتماماتك</p>
-        </div>
-        <div class="category-grid" id="categoryGrid">
-            <!-- سيتم إنشاؤها بواسطة JavaScript -->
-        </div>
-    </section>
+<main class="shelf-wrap">
+  <div class="shelf" id="shelf"></div>
+  <p class="empty-state" id="empty-state" data-i18n="emptyState" hidden>No books match your search. Try a different title or category.</p>
+</main>
 
-    <!-- ===== DISCOVERY SECTION ===== -->
-    <section class="section" id="discovery">
-        <div class="discovery-glass">
-            <div class="discovery-header">
-                <h3>اكتشف المنتجات</h3>
-                <p>ابحث، صفّف، ورتب حسب احتياجاتك</p>
-            </div>
-            <div class="discovery-controls">
-                <div class="search-wrap">
-                    <input type="text" id="searchInput" placeholder="ابحث عن منتج..." />
-                    <button class="search-btn" id="searchBtn">🔍</button>
-                </div>
-                <div class="filter-group">
-                    <select id="categoryFilter">
-                        <option value="all">جميع التصنيفات</option>
-                        <option value="واجهات UI">واجهات UI</option>
-                        <option value="كتب إلكترونية">كتب إلكترونية</option>
-                        <option value="قوالب">قوالب</option>
-                        <option value="دورات">دورات</option>
-                        <option value="برمجيات">برمجيات</option>
-                        <option value="أصول تصميم">أصول تصميم</option>
-                    </select>
-                    <select id="sortFilter">
-                        <option value="popular">الأكثر شهرة</option>
-                        <option value="price-low">السعر: من الأقل للأعلى</option>
-                        <option value="price-high">السعر: من الأعلى للأقل</option>
-                    </select>
-                </div>
-            </div>
-            <div class="discovery-results" id="discoveryResults">
-                <!-- سيتم إنشاؤها بواسطة JavaScript -->
-            </div>
-        </div>
-    </section>
+<section class="howto" id="how-to-buy">
+  <div class="howto-inner">
+    <p class="eyebrow" data-i18n="howToBuy">How to buy</p>
+    <h2 data-i18n="fourSteps">Four simple steps</h2>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">1</span>
+        <h3 data-i18n="step1Title">Pick a book</h3>
+        <p data-i18n="step1Desc">Browse the shelf and find the title you want. Tap "Get this book" on the card.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">2</span>
+        <h3 data-i18n="step2Title">Send us a message</h3>
+        <p data-i18n="step2Desc">Message us on Telegram with the exact book title.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">3</span>
+        <h3 data-i18n="step3Title">Receive your eBook</h3>
+        <p data-i18n="step3Desc">We send the PDF straight to your Telegram.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">4</span>
+        <h3 data-i18n="step4Title">Pay via Binance</h3>
+        <p><span data-i18n="step4Desc">Send $9.99 in USDT to our Binance ID: </span><strong>124541816</strong></p>
+      </div>
+    </div>
+    <div class="contact-row">
+      <a href="#" class="contact-btn telegram" id="telegram-link">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3L19.5 4.36c.73-.33 1.43.18 1.15 1.3l-3.05 14.36c-.21 1-.83 1.24-1.7.78l-4.55-3.36-2.36 2.28c-.27.27-.5.5-.96.5z"/></svg>
+        <span data-i18n="telegramBtn">Telegram</span>
+      </a>
+    </div>
+    <p class="howto-note" data-i18n="payFirstNote">Prefer to pay first? That works too — just let us know.</p>
+    <p class="howto-note"><span data-i18n="visitNote">Feel free to visit us at </span><a href="https://salmafx.com" target="_blank" rel="noopener">salmafx.com</a></p>
+  </div>
+</section>
 
-    <!-- ===== CTA SECTION ===== -->
-    <section class="cta-section" id="cta">
-        <div class="cta-glass">
-            <div class="cta-glow"></div>
-            <h2>مستعد لتطوير <span class="accent">مجموعتك الإبداعية؟</span></h2>
-            <p>انضم إلى آلاف المبدعين الذين يستخدمون لوميناري يومياً</p>
-            <a href="#products" class="btn-primary">ابدأ الآن</a>
-        </div>
-    </section>
+<footer class="site-footer">
+  <p data-i18n="footerText">mt5ebooks.com &middot; A project by SalmaFX Trading</p>
+</footer>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <div class="logo-text">✦ لوميناري</div>
-                <p>سوق المنتجات الرقمية الفاخر</p>
-            </div>
-            <div class="footer-links">
-                <a href="#products">المنتجات</a>
-                <a href="#categories">التصنيفات</a>
-                <a href="#">عن الشركة</a>
-                <a href="#">اتصل بنا</a>
-            </div>
-            <div class="footer-social">
-                <a href="#">𝕏</a>
-                <a href="#">𝔽</a>
-                <a href="#">𝕀</a>
-                <a href="#">𝕐</a>
-            </div>
-            <div class="footer-copy">© 2026 لوميناري. جميع الحقوق محفوظة.</div>
-        </div>
-    </footer>
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+    <div class="modal-cover"><img id="modal-img" src="" alt=""></div>
+    <div class="modal-body">
+      <p class="modal-cat" id="modal-cat"></p>
+      <h3 id="modal-title"></h3>
+      <p class="modal-author" id="modal-author"></p>
+      <p class="modal-price">$9.99</p>
+      <p class="modal-instructions" data-i18n="modalInstructions">Send us the title below on Telegram to get your copy. Pay via Binance (USDT, ID 124541816) after you receive it.</p>
+      <div class="modal-actions">
+        <a href="#" class="contact-btn telegram" id="modal-telegram" data-i18n="modalTelegramBtn">Message on Telegram</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <script src="script.js"></script>
+<script src="i18n.js"></script>
+<script src="books.js"></script>
+<script src="books_ar.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
